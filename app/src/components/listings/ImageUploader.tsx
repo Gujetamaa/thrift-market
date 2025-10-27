@@ -3,21 +3,42 @@ import { storage } from "../../lib/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import "../../css/components/image-uploader.css";
 
-export default function ImageUploader({ onDone }: { onDone: (urls: string[]) => void }) {
+export default function ImageUploader({
+  onDone,
+  onBusyChange,
+  max = 5,
+}: {
+  onDone: (urls: string[]) => void;
+  onBusyChange?: (busy: boolean) => void;
+  max?: number;
+}) {
   const [busy, setBusy] = useState(false);
 
   async function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
     const files = Array.from(e.target.files || []);
     if (!files.length) return;
+
+    const slice = files.slice(0, max); // limit uploads
     setBusy(true);
-    const urls: string[] = [];
-    for (const f of files) {
-      const r = ref(storage, `listings/${Date.now()}-${f.name}`);
-      await uploadBytes(r, f);
-      urls.push(await getDownloadURL(r));
+    onBusyChange?.(true);
+
+    try {
+      const urls: string[] = [];
+      for (const f of slice) {
+        const path = `listings/${Date.now()}-${Math.random().toString(36).slice(2)}-${f.name}`;
+        const r = ref(storage, path);
+        await uploadBytes(r, f);
+        urls.push(await getDownloadURL(r));
+      }
+      onDone(urls);
+    } catch (err) {
+      console.error(err);
+      alert("Image upload failed. Please try again.");
+    } finally {
+      setBusy(false);
+      onBusyChange?.(false);
+      if (e.target) e.target.value = ""; // allow re-select same files
     }
-    setBusy(false);
-    onDone(urls);
   }
 
   return (
