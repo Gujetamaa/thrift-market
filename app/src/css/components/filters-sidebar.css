@@ -1,0 +1,29 @@
+.filters-sidebar {
+  background: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filters-sidebar h3 {
+  color: #DF7426;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.filter-group input {
+  accent-color: #DF7426;
+}

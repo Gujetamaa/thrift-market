@@ -1,0 +1,39 @@
+.home-header {
+  position: relative;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/Images/home-hero.jpg') no-repeat center center/cover;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+  overflow: hidden;
+}
+
+.home-title {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: homeSlideDown 1s ease forwards 0.3s;
+}
+
+@keyframes homeSlideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-section {
+  padding: 3rem 10rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .home-section {
+    padding: 2rem 3rem;
+    grid-template-columns: 1fr;
+  }
+}

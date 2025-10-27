@@ -1,0 +1,45 @@
+/* src/css/tokens.css
+   Global design tokens: colors, fonts, radii, spacing, shadows
+   (We’ll tweak values later when you share the deck) */
+
+/* 1) Fonts (temporary; we can swap to deck fonts) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600&display=swap");
+
+/* 2) CSS variables */
+:root {
+  /* Brand palette (placeholder) — use RGB so Tailwind can do opacity */
+  --brand-50:  240 249 255;
+  --brand-100: 224 242 254;
+  --brand-200: 186 230 253;
+  --brand-300: 125 211 252;
+  --brand-400: 56 189 248;
+  --brand-500: 14 165 233; /* primary */
+  --brand-600: 2 132 199;
+  --brand-700: 3 105 161;
+  --brand-800: 7 89 133;
+  --brand-900: 12 74 110;
+
+  /* Neutrals for dark UI */
+  --bg:        23 23 23;    /* #171717 */
+  --card:      38 38 38;    /* #262626 */
+  --muted:    161 161 170;  /* #A1A1AA */
+  --text:     255 255 255;
+
+  /* Radii / shadows */
+  --radius: 12px;
+  --shadow-card: 0 8px 24px rgba(0,0,0,0.25);
+
+  /* Fonts */
+  --font-display: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", sans-serif;
+  --font-body:    "Inter",   system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", sans-serif;
+}
+
+/* 3) Theme application (base document styles) */
+html, body, #root { height: 100%; }
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--text));
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

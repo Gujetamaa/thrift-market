@@ -1,0 +1,13 @@
+.price-input {
+  width: 100%;
+  background: #2b2b2b;
+  border: 1px solid #3e3e3e;
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  color: #fff;
+}
+
+.price-input:focus {
+  border-color: #DF7426;
+  outline: none;
+}
