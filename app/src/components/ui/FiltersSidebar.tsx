@@ -97,23 +97,31 @@ export default function FiltersSidebar({
         </div>
       </div>
 
-      <div className="filter-group">
+        <div className="filter-group">
         <label>Price range (₱)</label>
-        <div style={{ display: "flex", gap: "0.5rem" }}>
-          <input
-            type="number"
-            placeholder="Min"
-            value={local.priceMin ?? ""}
-            onChange={(e) => setNum("priceMin", e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Max"
-            value={local.priceMax ?? ""}
-            onChange={(e) => setNum("priceMax", e.target.value)}
-          />
+
+        <div className="price-group">
+            <div className="price-field">
+            <input
+                id="priceMin"
+                type="number"
+                placeholder="Min"
+                value={local.priceMin ?? ""}
+                onChange={(e) => setNum("priceMin", e.target.value)}
+            />
+            </div>
+
+            <div className="price-field">
+            <input
+                id="priceMax"
+                type="number"
+                placeholder="Max"
+                value={local.priceMax ?? ""}
+                onChange={(e) => setNum("priceMax", e.target.value)}
+            />
+            </div>
         </div>
-      </div>
+        </div>
 
       <button onClick={reset} style={{ alignSelf: "flex-start" }}>
         Reset
