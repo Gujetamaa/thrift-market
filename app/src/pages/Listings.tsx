@@ -31,25 +31,34 @@ export default function Listings() {
 
   useEffect(() => {
     (async () => {
-      const q = query(
-        collection(db, "listings"),
-        where("isActive", "==", true),
-        orderBy("createdAt", "desc")
-      );
-      const snap = await getDocs(q);
+      const base = collection(db, "listings");
+      try {
+        const q1 = query(
+          base,
+          where("isActive", "==", true),
+          orderBy("createdAt", "desc")
+        );
+        const snap = await getDocs(q1);
+        const rows = snap.docs.map((d) => ({ id: d.id, ...d.data() } as any));
+        console.log("[Listings] primary query OK:", rows.length, "docs");
+        setItems(rows);
+      } catch (err) {
+        console.error("[Listings] primary query failed — likely needs index:", err);
 
-      const rows = snap.docs.map((d) => {
-        const data = d.data() as any;
-        return {
-          id: d.id,
-          ...data,
-          priceDisplay: formatPHP(Number(data.price)),
-        } as Listing & { priceDisplay: string };
-      });
-
-      setItems(rows);
+        // Fallback (no orderBy) so you still see items
+        try {
+          const q2 = query(base, where("isActive", "==", true));
+          const snap2 = await getDocs(q2);
+          const rows2 = snap2.docs.map((d) => ({ id: d.id, ...d.data() } as any));
+          console.warn("[Listings] fallback query used:", rows2.length, "docs");
+          setItems(rows2);
+        } catch (err2) {
+          console.error("[Listings] fallback query also failed:", err2);
+        }
+      }
     })();
   }, []);
+
 
   const filtered = useMemo(() => {
     return items.filter((i) => {
