@@ -2,7 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-/* import tokens first */
 @import "./tokens.css";
 
-/* (we'll add base.css, components.css, utilities.css next) */

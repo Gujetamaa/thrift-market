@@ -31,7 +31,6 @@ export default function SizeSelect({
 
   return (
     <select value={value} onChange={(e) => onChange(e.target.value)}>
-      {/* Apparel sizes (if any) */}
       {apparelBlock.length > 0 && (
         <optgroup label="Apparel">
           {apparelBlock.map((s) => (
@@ -40,7 +39,6 @@ export default function SizeSelect({
         </optgroup>
       )}
 
-      {/* Shoe sizes (if included) */}
       {includeShoeBlocks && (
         <>
           <optgroup label="EU Sizes">

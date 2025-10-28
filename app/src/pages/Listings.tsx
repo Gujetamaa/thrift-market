@@ -106,7 +106,6 @@ export default function Listings() {
       >
         <FiltersSidebar value={filters} onChange={setFilters} />
         <div className="listings-grid">
-          {/* ListingGrid just needs to render priceDisplay if present, else fallback */}
           <ListingGrid
             items={filtered.map((i: any) => ({
               ...i,

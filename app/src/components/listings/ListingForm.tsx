@@ -13,9 +13,6 @@ import { useAuth } from "../../store/useAuth";
 
 import "../../css/components/listing-form.css";
 
-/* ---------------------------------- */
-/* Constants & Schema                  */
-/* ---------------------------------- */
 
 const CONDITION_OPTIONS = ["new", "like-new", "good", "fair"] as const;
 const CATEGORY_OPTIONS = ["tops", "bottoms", "shoes", "accessories", "other"] as const;
